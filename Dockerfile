@@ -1,4 +1,6 @@
 FROM archlinux
+LABEL maintainer "briq <990647625@qq.com>"
+
 RUN useradd -d /home/briq -m -p "dlsz" -s /bin/sh -U briq
 COPY pacman_conf/pacman.conf /etc/
 COPY pacman_conf/mirrorlist /etc/pacman.d/
