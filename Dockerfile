@@ -38,7 +38,7 @@ RUN pacman -Syy; \
 	rm -rf "$GNUPGHOME" /usr/local/bin/gosu.asc; \
     \
     # fullfill gosu binary exec perm
-	chmod +x /usr/local/bin/gosu; \
+    chmod +x /usr/local/bin/gosu; \
     gosu --version; \
     gosu nobody true
 
