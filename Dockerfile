@@ -44,5 +44,7 @@ RUN pacman -Syy; \
 
 COPY nvim_entrypoint.sh /usr/local/bin/
 
+RUN chmod +x /usr/local/bin/nvim_entrypoint.sh
+
 ENTRYPOINT ["/usr/local/bin/nvim_entrypoint.sh"]
 
