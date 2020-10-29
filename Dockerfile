@@ -3,7 +3,9 @@ LABEL maintainer "briq <990647625@qq.com>"
 
 ENV GOSU_VERSION 1.12
 
-RUN useradd -d /home/nvim -m -s /bin/sh -U -u 1000 nvim
+# RUN useradd -d /home/nvim -m -s /bin/sh -U -u 1000 nvim
+
+WORKDIR /home/nvim
 
 COPY pacman_conf/pacman.conf /etc/
 COPY pacman_conf/mirrorlist /etc/pacman.d/
@@ -15,11 +17,11 @@ RUN pacman -Syy; \
         ranger ueberzug gcc w3m ffmpegthumbnailer imlib2 fd iputils; \
     \
     # update the vim config
-    cd /home/nvim; \
+    cd $HOME; \
     mkdir -p .config; \
     git clone https://github.com/ABigBright/vimcfg-private.git .vim; \
     git clone https://github.com/ABigBright/ranger_conf.git .config/ranger; \
-    ln -s /home/nvim/.vim /home/nvim/.config/nvim; \
+    ln -s $HOME/.vim $HOME/.config/nvim; \
     npm config set registry https://registry.npm.taobao.org/ --global; \
     pip config --global set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple; \
     pip install pynvim; \
