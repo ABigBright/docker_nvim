@@ -12,7 +12,7 @@ RUN pacman -Syy; \
     pacman -Sy --noconfirm --disable-download-timeout neovim yaourt; \
     yaourt -Sy --noconfirm --disable-download-timeout global ripgrep \
         python3 git npm the_silver_searcher yarn clang ctags python-pip \
-        ranger ueberzug gcc w3m ffmpegthumbnailer imlib2 fd; \
+        ranger ueberzug gcc w3m ffmpegthumbnailer imlib2 fd iputils; \
     \
     # update the vim config
     cd /home/nvim; \
