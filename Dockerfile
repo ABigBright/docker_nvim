@@ -42,7 +42,8 @@ RUN pacman -Syy; \
     # fullfill gosu binary exec perm
     chmod +x /usr/local/bin/gosu; \
     gosu --version; \
-    gosu nobody true
+    gosu nobody true; \
+    nvim -u $HOME/.config/nvim/init.vim -i NONE -c "PlugInstall" -c "qa"
 
 COPY nvim_entrypoint.sh /usr/local/bin/
 
