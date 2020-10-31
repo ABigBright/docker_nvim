@@ -2,13 +2,10 @@
 
 USER=nvim
 
-USER_ID=${USER_ID:-0} # the host user run this container
+USER_ID=${USER_ID:-1000} # the host user run this container
 
-if [ $USER_ID -eq `id -u` ]; then # host user == container current user
+if [ $USER_ID -eq `id -u` -a 1000 -eq `id -u` ]; then # host user == container current user, and container user is nvim
     exec nvim
 else
-    useradd -d /home/nvim -m -s /bin/sh -U -u $USER_ID nvim
-    cd $HOME && cp -a . /home/nvim/
-    chown -R nvim:nvim /home/nvim
     exec gosu nvim nvim
 fi
