@@ -30,11 +30,9 @@ RUN pacman -Syy; \
     gosu --version; \
     gosu nobody true
 
-COPY nvim_entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/nvim_entrypoint.sh
+COPY entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
-# switch user
-USER nvim
 # update the vim config
 RUN cd $HOME; \
     mkdir -p .config; \
@@ -47,7 +45,7 @@ RUN cd $HOME; \
     yarn global add neovim; \
     nvim -u $HOME/.config/nvim/init.vim -i NONE -c "PlugInstall" -c "qa"
 
-USER root
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
-ENTRYPOINT ["/usr/local/bin/nvim_entrypoint.sh"]
+CMD ["/bin/bash"]
 
