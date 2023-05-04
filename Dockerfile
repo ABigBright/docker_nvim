@@ -1,4 +1,4 @@
-FROM archlinux:latest
+FROM --platform=linux/amd64 archlinux:latest
 LABEL maintainer "briq <990647625@qq.com>"
 
 ENV GOSU_VERSION 1.12
@@ -36,12 +36,12 @@ RUN cd /home/nvim; \
     mkdir -p .config; \
     git clone https://github.com/ABigBright/vimcfg-private.git .vim; \
     git clone https://github.com/ABigBright/ranger_conf.git .config/ranger; \
-    ln -s $HOME/.vim $HOME/.config/nvim; \
+    ln -s /home/nvim/.vim /home/nvim/.config/nvim; \
     npm config set registry https://registry.npm.taobao.org/; \
     python3 -m pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple; \
     python3 -m pip install neovim; \
     yarn global add neovim; \
-    nvim -u $HOME/.config/nvim/init.vim -i NONE -c "PlugInstall" -c "qa"
+    nvim -u /home/nvim/.config/nvim/init.vim -i NONE -c "PlugInstall" -c "qa"
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
